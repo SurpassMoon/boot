@@ -1,33 +1,18 @@
 server:
-  port: 8989
+  port: 8080
 
 spring:
   datasource:
-    master:
-      url: jdbc:mysql://127.0.0.1:3306/chars?useUnicode=true&characterEncoding=UTF-8
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      username: root
-      password: my-secret-pw
-      type: com.zaxxer.hikari.HikariDataSource
-    cluster:
-      - key: slave1
-        url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        username: root
-        password: my-secret-pw
-        type: com.zaxxer.hikari.HikariDataSource
-      - key: slave2
-        url: jdbc:mysql://127.0.0.1:3306/chars?useUnicode=true&characterEncoding=UTF-8
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        username: root
-        password: my-secret-pw
-        type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/chars?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: my-secret-pw
 
-mybatis:
-#mybatis-plus:
+
+#logging:
+#  level:
+#    org.springframework: DEBUG
+
+mybatis-plus:
+  type-aliases-package: com.lz.boot.entity
   mapper-locations: classpath:/mapper/*Mapper.xml
-  #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.lz.boot.entity
-logging:
-  level:
-    org.springframework: DEBUG

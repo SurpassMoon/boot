@@ -1,14 +1,11 @@
 package com.lz.boot.dao;
 
-import com.lz.boot.config.DataSource;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lz.boot.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.io.Serializable;
-
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User> {
 
-    @DataSource("slave1")
-    User selectById(Serializable id);
+    
 }
