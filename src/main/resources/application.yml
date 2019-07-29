@@ -1,27 +1,35 @@
 server:
   port: 8989
 
+
+
 spring:
   datasource:
-    master:
+    db1:
       url: jdbc:mysql://127.0.0.1:3306/chars?useUnicode=true&characterEncoding=UTF-8
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: my-secret-pw
-      type: com.zaxxer.hikari.HikariDataSource
-    cluster:
-      - key: slave1
-        url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        username: root
-        password: my-secret-pw
-        type: com.zaxxer.hikari.HikariDataSource
-      - key: slave2
-        url: jdbc:mysql://127.0.0.1:3306/chars?useUnicode=true&characterEncoding=UTF-8
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        username: root
-        password: my-secret-pw
-        type: com.zaxxer.hikari.HikariDataSource
+#      type: com.zaxxer.hikari.HikariDataSource
+    db2:
+      url: jdbc:mysql://127.0.0.1:3306/chars?useUnicode=true&characterEncoding=UTF-8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: my-secret-pw
+#      type: com.zaxxer.hikari.HikariDataSource
+#    cluster:
+#      - key: slave1
+#        url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
+#        driver-class-name: com.mysql.cj.jdbc.Driver
+#        username: root
+#        password: my-secret-pw
+#        type: com.zaxxer.hikari.HikariDataSource
+#      - key: slave2
+#        url: jdbc:mysql://127.0.0.1:3306/chars?useUnicode=true&characterEncoding=UTF-8
+#        driver-class-name: com.mysql.cj.jdbc.Driver
+#        username: root
+#        password: my-secret-pw
+#        type: com.zaxxer.hikari.HikariDataSource
 
 mybatis:
 #mybatis-plus:
