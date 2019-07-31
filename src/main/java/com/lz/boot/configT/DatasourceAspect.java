@@ -23,6 +23,16 @@ public class DatasourceAspect {
         DatabaseHolder.setDatabaseSource(datasource.value());
     }
 
+    @Before("execution(* com.lz.boot.service.*.*(..))")
+    public void process(JoinPoint joinPoint){
+        String methodName=joinPoint.getSignature().getName();
+        if (methodName.startsWith("select")){
+            DatabaseHolder.setDatabaseSource("datasource1");
+        }else{
+            DatabaseHolder.setDatabaseSource("datasource2");
+        }
+    }
+
     /**
      * 
      * AOP数据源调用 
