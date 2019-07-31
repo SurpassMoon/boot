@@ -1,4 +1,4 @@
-package com.lz.boot.configT;
+package com.lz.boot.config;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Order(1)
 public class DatasourceAspect {
 
-    @Pointcut("@annotation(com.lz.boot.configT.MyDataSource)")
+    @Pointcut("@annotation(com.lz.boot.config.MyDataSource)")
     public void annotationPointCut() {
         // APSECT POINT CUT FUNCTION
     }

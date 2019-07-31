@@ -1,4 +1,4 @@
-package com.lz.boot.configT;
+package com.lz.boot.config;
 
 import java.lang.annotation.*;
 

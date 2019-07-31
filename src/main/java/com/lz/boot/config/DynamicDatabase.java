@@ -1,4 +1,4 @@
-package com.lz.boot.configT;
+package com.lz.boot.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,5 +13,6 @@ public class DynamicDatabase extends AbstractRoutingDataSource {
         logger.info("当前数据源是：{}", DatabaseHolder.getDatabaseSource());
         return DatabaseHolder.getDatabaseSource();
     }
+
 
 }
