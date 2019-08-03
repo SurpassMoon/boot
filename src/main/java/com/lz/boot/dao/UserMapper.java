@@ -9,6 +9,6 @@ import java.io.Serializable;
 public interface UserMapper {
 
 //    @DataSource("slave1")
-//    @MyDataSource("datasource2")
+//    @Ds("datasource2")
     User selectById(Serializable id);
 }

@@ -1,5 +1,8 @@
-package com.lz.boot.config;
+package com.lz.boot.aspect;
 
+import com.lz.boot.annotation.Ds;
+import com.lz.boot.dyamicdatasource.DatabaseHolder;
+import com.lz.boot.enums.DataSourceType;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -8,33 +11,40 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * @ClassName DatasourceAspect.java
+ * @Description AOP拦截service层 动态注入数据源
+ * @author li zhe
+ * @createTime 2019-08-03 10:06
+ */
 @Aspect
 @Component
 @Order(1)
 public class DatasourceAspect {
 
-    @Pointcut("@annotation(com.lz.boot.config.MyDataSource)")
+    @Pointcut("@annotation(com.lz.boot.annotation.Ds)")
     public void annotationPointCut() {
         // APSECT POINT CUT FUNCTION
     }
 
-    @Before(value = "annotationPointCut()&&@annotation(datasource)")
-    public void beforeSwitchDS(JoinPoint point, MyDataSource datasource) {
-        DatabaseHolder.setDatabaseSource(datasource.value());
+    @Before(value = "annotationPointCut()&&@annotation(ds)")
+    public void beforeSwitchDS(JoinPoint point, Ds ds) {
+        DatabaseHolder.setDatabaseSource(ds.value());
     }
 
     @Before("execution(* com.lz.boot.service.*.*(..))")
-    public void process(JoinPoint joinPoint){
-        String methodName=joinPoint.getSignature().getName();
-        if (methodName.startsWith("select")){
-            DatabaseHolder.setDatabaseSource("datasource1");
-        }else{
-            DatabaseHolder.setDatabaseSource("datasource2");
+    public void process(JoinPoint joinPoint) {
+        String methodName = joinPoint.getSignature().getName();
+        if (methodName.matches("^(select|find|get).*$")) {
+            DatabaseHolder.setDatabaseSource(DataSourceType.SLAVE);
+        } else {
+            DatabaseHolder.setDatabaseSource(DataSourceType.MASTER);
         }
+
     }
 
     /**
-     * 
+     *
      * AOP数据源调用 
      * repository@Annotation(AOP)-->
      * DefaultSqlSession-->
@@ -43,7 +53,7 @@ public class DatasourceAspect {
      * SpringManagedTransaction.getConnection()--->连接为空-->
      * AbstractRoutingDataSource.getConnection()-->
      * 拿到beforeAOP中注入的datasource的key,所以每次都会动态切换数据源
-     * 
+     *
      * 数据库事务调用 service注解上@transactional-->
      * TransactionInterceptor.interpter()-->
      * TransactionAspectSupport.createTransactionIfNecessary()-->
@@ -56,7 +66,7 @@ public class DatasourceAspect {
      * DataSourceUtils.getConnection()-->
      * TransactionSynchronizationManager.getResource(dataSource)不为空[从TransactionUtils的threadLocal中获取数据源],
      * 所以不会再去调用DynamicDataSource去获取数据源
-     * 
+     *
      * ① 加入Transaction注解时默认是先执行transaction的doBegin，然后再去找AbstractRoutingDataSource.determineTargetDataSource发现是null
      * 然后就会设置默认的数据源，所以必须在执行transaction的doBegin前通过AOP把切换的数据源进行注入，所以在本过滤器中定义Order的优先级为1
      * ② 在每次切换数据源之后再次清除ThreadLocal中的数据源定义，防止线程重复使用时获取旧的数据源定义。
