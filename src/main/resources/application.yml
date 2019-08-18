@@ -3,16 +3,20 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/chars?useUnicode=true&characterEncoding=UTF-8
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: my-secret-pw
-
-
-#logging:
-#  level:
-#    org.springframework: DEBUG
+    schema[0]: classpath:sql/user.sql
+    schema[1]: classpath:sql/insert.sql
+    initialization-mode: always
+  h2:
+    console:
+      enabled: true
 
 mybatis-plus:
   type-aliases-package: com.lz.boot.entity
   mapper-locations: classpath:/mapper/*Mapper.xml
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %red [%X{requestId}] [%thread] %-5level %logger{50} - %msg  %n"
+  level:
+    org.springframework.web: DEBUG
+    com.lz.boot: debug

@@ -1,54 +1,30 @@
 package com.lz.boot.entity;
 
-import org.springframework.stereotype.Component;
+import lombok.Getter;
+import lombok.Setter;
 
-@Component
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+
+@Setter
+@Getter
 public class User {
 
+    @NotNull(message = "主键不能为空。")
     private Long id;
+
+    @NotBlank(message = "用户名不能为空。")
     private String username;
+
+    @NotBlank(message = "用户名不能为空。")
     private String password;
+
     private Integer sex;
+
     private Integer age;
 
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 }
