@@ -6,7 +6,10 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/chars?useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: my-secret-pw
+    password: root
+    initialSize: 2
+    minIdle: 2
+    maxActive: 2
 
 
 #logging:
