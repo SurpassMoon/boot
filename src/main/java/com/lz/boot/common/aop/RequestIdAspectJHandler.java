@@ -1,4 +1,4 @@
-package com.lz.boot.aop;
+package com.lz.boot.common.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;

@@ -1,4 +1,4 @@
-package com.lz.boot.controller.exception;
+package com.lz.boot.common.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
