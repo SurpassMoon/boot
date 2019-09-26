@@ -1,7 +1,7 @@
 package com.lz.boot.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lz.boot.User;
+import com.lz.boot.model.User;
 
 /**
  * @author: 李喆

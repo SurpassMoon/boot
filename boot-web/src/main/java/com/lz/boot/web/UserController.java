@@ -1,10 +1,11 @@
 package com.lz.boot.web;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.lz.boot.User;
+import com.lz.boot.model.User;
 import com.lz.boot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity post(User user){
+    public ResponseEntity post(@Validated User user){
         userService.save(user);
         return ResponseEntity.ok().build();
     }

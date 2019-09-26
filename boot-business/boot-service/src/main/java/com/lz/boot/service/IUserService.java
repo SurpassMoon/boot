@@ -1,7 +1,7 @@
 package com.lz.boot.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lz.boot.User;
+import com.lz.boot.model.User;
 
 /**
  * @author: 李喆
