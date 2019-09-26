@@ -7,31 +7,34 @@
         <groupId>com.lz.boot</groupId>
         <version>0.0.1</version>
     </parent>
+    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>boot-web</artifactId>
+    <modules>
+        <module>boot-service</module>
+        <module>boot-repository</module>
+    </modules>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.lz.boot</groupId>
             <artifactId>boot-model</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
-            <groupId>com.lz.boot</groupId>
-            <artifactId>boot-service</artifactId>
-            <version>${version}</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus-boot-starter.version}</version>
         </dependency>
     </dependencies>
+
+    <groupId>com.lz.boot</groupId>
+    <artifactId>boot-business</artifactId>
+    <version>0.0.1</version>
+
     <properties>
         <version>0.0.1</version>
+        <mybatis-plus-boot-starter.version>3.2.0</mybatis-plus-boot-starter.version>
     </properties>
-
-
-
 
 </project>

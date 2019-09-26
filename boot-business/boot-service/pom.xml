@@ -3,23 +3,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>boot</artifactId>
+        <artifactId>boot-business</artifactId>
         <groupId>com.lz.boot</groupId>
         <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>boot-model</artifactId>
-    <groupId>com.lz.boot</groupId>
-    <version>0.0.1</version>
+    <artifactId>boot-service</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.lz.boot</groupId>
-            <artifactId>boot-common</artifactId>
-            <version>0.0.1</version>
+            <artifactId>boot-model</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lz.boot</groupId>
+            <artifactId>boot-repository</artifactId>
+            <version>${version}</version>
         </dependency>
     </dependencies>
+    <properties>
+        <version>0.0.1</version>
+    </properties>
 
 
 </project>
