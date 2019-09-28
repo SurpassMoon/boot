@@ -1,6 +1,7 @@
 package com.lz.boot.web;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lz.boot.model.User;
 import com.lz.boot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class UserController {
     }
 
     @GetMapping("/users/pages")
-    public ResponseEntity get(IPage<User> page){
+    public ResponseEntity get(Page<User> page){
         IPage<User> users = userService.page(page);
         return ResponseEntity.ok(users);
     }

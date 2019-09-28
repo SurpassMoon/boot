@@ -1,27 +1,30 @@
 package com.lz.boot.config;
 
-import com.baomidou.mybatisplus.extension.incrementer.H2KeyGenerator;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author: 李喆
  * @Description:
  * @Date: 2019/9/23 3:27 下午
  */
+@EnableTransactionManagement
 @Configuration
 @MapperScan(value = {"com.lz.boot.**.*mapper"})
 public class MybatisPlusConfig {
 
+
     /**
-     * sequence主键，需要配置一个主键生成器
-     * 配合实体类注解 {@link KeySequence} + {@link TableId} type=INPUT
-     * @return
+     * 分页插件
      */
     @Bean
-    public H2KeyGenerator h2KeyGenerator(){
-        return new H2KeyGenerator();
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        // paginationInterceptor.setLimit(你的最大单页限制数量，默认 500 条，小于 0 如 -1 不受限制);
+        return paginationInterceptor;
     }
 
 
