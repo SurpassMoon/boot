@@ -3,6 +3,8 @@ package com.lz.boot.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lz.boot.model.User;
 
+import java.util.List;
+
 /**
  * @author: 李喆
  * @Description:
@@ -10,4 +12,5 @@ import com.lz.boot.model.User;
  */
 public interface IUserService extends IService<User> {
 
+    List<User> listWrapper(User user);
 }

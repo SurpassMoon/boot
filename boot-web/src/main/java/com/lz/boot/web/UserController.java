@@ -29,6 +29,12 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/users/wrapper")
+    public ResponseEntity<List<User>> getWrapper(User user){
+        List<User> users = userService.listWrapper(user);
+        return ResponseEntity.ok(users);
+    }
+
     @GetMapping("/users/pages")
     public ResponseEntity get(IPage<User> page){
         IPage<User> users = userService.page(page);
@@ -36,14 +42,14 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity post(@Validated User user){
+    public ResponseEntity post(@Validated @RequestBody User user){
         userService.save(user);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/users")
     public ResponseEntity put(User user){
-        userService.update();
+        userService.update(user, null);
         return ResponseEntity.ok().build();
     }
 
