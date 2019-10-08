@@ -1,8 +1,10 @@
 package com.lz.boot.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lz.boot.common.global.exception.UserNotExistException;
 import com.lz.boot.model.User;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,5 +14,7 @@ import java.util.List;
  */
 public interface IUserService extends IService<User> {
 
-    List<User> listWrapper(User user);
+    List<User> listByWrapper(User user);
+
+    User getOneById(Serializable id) throws UserNotExistException;
 }

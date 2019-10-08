@@ -11,7 +11,6 @@
         <module>boot-model</module>
         <module>boot-business</module>
         <module>boot-common</module>
-        <module>boot-main</module>
     </modules>
     <packaging>pom</packaging>
     <name>boot</name>

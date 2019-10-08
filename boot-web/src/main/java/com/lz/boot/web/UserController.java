@@ -2,6 +2,7 @@ package com.lz.boot.web;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.lz.boot.common.global.exception.UserNotExistException;
 import com.lz.boot.model.User;
 import com.lz.boot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,15 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getOne(@PathVariable Serializable id) throws UserNotExistException {
+        User user = userService.getOneById(id);
+        return ResponseEntity.ok(user);
+    }
+
     @GetMapping("/users/wrapper")
-    public ResponseEntity<List<User>> getWrapper(User user){
-        List<User> users = userService.listWrapper(user);
+    public ResponseEntity<List<User>> getByWrapper(User user){
+        List<User> users = userService.listByWrapper(user);
         return ResponseEntity.ok(users);
     }
 
@@ -59,5 +66,6 @@ public class UserController {
         userService.removeById(id);
         return ResponseEntity.ok().build();
     }
+
 
 }
